@@ -1,7 +1,7 @@
 {
   "name": "pfd2m",
   "version": "0.1.0",
-  "homepage": "https://jakeoneijk.github.io/pfd2m",
+  "homepage": "https://jakeoneijk.github.io/pfd2m_project",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
