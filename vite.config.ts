@@ -6,6 +6,6 @@ export default defineConfig({
   plugins: [react()],
   // optional: if you keep wavs under src/, you usually don't need this.
   // assets in /public are always served statically.
-  base: '/pfd2m/',
+  base: '/pfd2m_project/',
   assetsInclude: ['**/*.wav']
 })
