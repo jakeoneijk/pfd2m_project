@@ -21,7 +21,7 @@ function App() {
   return (
     <div className='App' style={style}>
       <Title />
-      This project page is under construction!
+      This demo page is temporarily unavailable while approvals are pending.
       {/** 
       <div style={iframeContainerStyle}>
         <iframe
