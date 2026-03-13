@@ -3,28 +3,28 @@ import AudioSpecTable from '../Component/AudioSpecTable'
 import type { TheadMetaType } from '../Component/Type'
 
 type Props = {
-  audioType: 'Speech' | 'Music' | 'Sound Effect'
+  audioType: 'Single human dancer' | 'Single non-human dancer' | 'Multiple human dancers' | 'Multiple non-human dancers'
 }
 
 const theadMetaArray: TheadMetaType[] = [
-  { name: '8 kHz (Input)', miniTopDescription: '', description: '', color: '#4D97EF' },
-  { name: 'AudioSR [1]', miniTopDescription: '', description: '', color: '#C00909' },
-  { name: 'FlashSR [2]', miniTopDescription: '', description: '', color: '#C00909' },
-  { name: 'SAGA-SR', miniTopDescription: '', description: '(proposed)', color: '#EF7E4D' },
-  { name: 'Ground-Truth', miniTopDescription: '', description: '', color: '#449948' },
+  { name: 'LORIS [1]', miniTopDescription: '', description: '', color: '#C00909' },
+  { name: 'Textual-Inv [2]', miniTopDescription: '', description: '', color: '#C00909' },
+  { name: 'PF-D2M', miniTopDescription: '', description: '', color: '#449948' },
 ]
 
 const typeAbbrevMap = {
-  'Speech': 's',
-  'Music': 'm',
-  'Sound Effect': 'f',
+  'Single human dancer': 'single_human',
+  'Single non-human dancer': 'single_non_human',
+  'Multiple human dancers': 'multi_human',
+  'Multiple non-human dancers': 'multi_non_human',
 }
 const totalWavFiles = import.meta.glob(`./audio/*.wav`, { eager: true, as: 'url' })
 const totalImgFiles = import.meta.glob('./spec/*.png', { eager: true, as: 'url' })
+const totalVidFiles = import.meta.glob(`./video/*.mp4`, { eager: true, as: 'url' })
 
-function getFiles(audioType: 'Speech' | 'Music' | 'Sound Effect', fileType: 'wav' | 'png') {
-  const prefix = `/${fileType === 'wav' ? 'audio' : 'spec'}/${typeAbbrevMap[audioType]}`;
-  const files = fileType === 'wav' ? totalWavFiles : totalImgFiles;
+function getFiles(audioType: 'Single human dancer' | 'Single non-human dancer' | 'Multiple human dancers' | 'Multiple non-human dancers') {
+  const prefix = `/video/${typeAbbrevMap[audioType]}`;
+  const files = totalVidFiles
   return Object.entries(files).filter(([path]) => path.includes(prefix))
     .sort(([aPath], [bPath]) => aPath.localeCompare(bPath, undefined, { numeric: true }))
     .map(([_, url]) => url)
@@ -44,7 +44,7 @@ function checkPrefix(urls: string[]): boolean {
 }
 
 function checkGroup(urls: string[]): boolean {
-  const EXPECTED_SUFFIXES = ['0_lr', '1_audiosr', '2_flashsr', '3_saga_sr', '4_hr'];
+  const EXPECTED_SUFFIXES = ['0_loris', '1_text_inv', '2_ours'];
 
   if (urls.length !== EXPECTED_SUFFIXES.length) {
     return false;
@@ -54,23 +54,21 @@ function checkGroup(urls: string[]): boolean {
 }
 
 export default function AudioTable({ audioType }: Props) {
-  const wavFiles = getFiles(audioType, 'wav')
-  const imgFiles = getFiles(audioType, 'png')
+  const vidFiles = getFiles(audioType)
 
   const tableAudio: string[][] = []
-  for (let i = 0; i < wavFiles.length; i += 5) {
-    const wavFilesGroup = wavFiles.slice(i, i + 5);
-    const imgFilesGroup = imgFiles.slice(i, i + 5);
-    if (!checkPrefix(wavFilesGroup) || !checkPrefix(imgFilesGroup)) throw new Error(`File naming prefix mismatch in ${audioType} files.`)
-    if (!checkGroup(wavFilesGroup) || !checkGroup(imgFilesGroup)) throw new Error(`File naming group mismatch in ${audioType} files.`)
-    tableAudio.push(wavFilesGroup, imgFilesGroup)
+  for (let i = 0; i < vidFiles.length; i += 3) {
+    const vidFilesGroup = vidFiles.slice(i, i + 3);
+    if (!checkGroup(vidFilesGroup)) throw new Error(`File naming group mismatch in ${audioType} files.`)
+    tableAudio.push(vidFilesGroup)
   }
+  console.log(vidFiles)
   return (
     <AudioSpecTable
-      tableName={`${audioType} (8 kHz to 44.1 kHz)`}
+      tableName={`${audioType}`}
       theadMetaArray={theadMetaArray}
       tableAudio={tableAudio}
-      audioWidth="180px"
+      audioWidth="400px"
     />
   )
 }

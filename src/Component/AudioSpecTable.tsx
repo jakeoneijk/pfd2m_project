@@ -70,35 +70,20 @@ export default function AudioSpecTable({
       </thead>
       <tbody>
         {tableAudio.map((rowAudio, index) => {
-          return index % 2 === 0 ? (
+          return  (
             <tr>
-              <td style={tdMidStyle}>{index / 2}</td>
+              <td style={tdMidStyle}>{index}</td>
               {rowAudio.map((tableData) => {
                 return (
                   <td style={tdMidStyle}>
-                    <audio controls style={{ width: audioWidth }}>
-                      <source src={tableData} type='audio/wav' />
-                    </audio>
+                    <video controls style={{ width: audioWidth }}>
+                      <source src={tableData} type='video/mp4' />
+                    </video>
                   </td>
                 )
               })}
             </tr>
-          ) : (
-            <tr>
-              <td style={tdStyle}>{''}</td>
-              {rowAudio.map((tableData) => {
-                return (
-                  <td style={tdStyle}>
-                    <img
-                      src={tableData}
-                      style={{ width: audioWidth }}
-                      alt='spectrogram'
-                    />
-                  </td>
-                )
-              })}
-            </tr>
-          )
+          ) 
         })}
       </tbody>
     </div>

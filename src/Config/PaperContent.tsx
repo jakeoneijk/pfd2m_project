@@ -9,11 +9,10 @@ export const paperContent = {
     '² Sony Computer Science Laboratories, Tokyo, Japan'
   ],
   abstract:
-    'audio super-resolution (SR) aims to predict high-frequency components from low-resolution audio across diverse domains such as speech, music, and sound effects. Existing diffusion-based SR methods often fail to produce semantically aligned outputs and struggle with consistent high-frequency reconstruction. In this paper, we propose SAGA-SR, a versatile audio SR model that combines semantic and acoustic guidance. Based on a DiT backbone trained with a flow matching objective, SAGA-SR is conditioned on text and spectral roll-off embeddings. Due to the effective guidance provided by its conditioning, SAGA-SR robustly upsamples audio from arbitrary input sampling rates between 4 kHz and 32 kHz to 44.1 kHz. Both objective and subjective evaluations show that SAGA-SR achieves state-of-the-art performance across all test cases.',
+    'Dance-to-music generation aims to generate music that is aligned with dance movements. Existing approaches typically rely on body motion features extracted from a single human dancer and limited dance-to-music datasets, which restrict their performance and applicability to real-world scenarios involving multiple dancers and non-human dancers. In this paper, we propose PF-D2M, a universal diffusion-based dance-to-music generation model that incorporates visual features extracted from dance videos. PF-D2M is trained with a progressive training strategy that effectively addresses data scarcity and generalization challenges. Both objective and subjective evaluations show that PF-D2M achieves state-of-the-art performance in dance-music alignment and music quality.',
   reference: [
-    'H. Liu, K. Chen, Q. Tian, W. Wang, and M. D. Plumbley, “Audiosr: Versatile audio super-resolution at scale,” in ICASSP, pp. 1076–1080, IEEE, 2024.',
-    'J. Im and J. Nam, “Flashsr: One-step versatile audio super-resolution via diffusion distillation,” in ICASSP. IEEE, 2025, pp. 1–5',
-    
+    'J. Yu, Y. Wang, X. Chen, X. Sun, and Y. Qiao, Long-Term Rhythmic Video Soundtracker, ICML2023.',
+    'S. Li, W. Dong, Y. Zhang, F. Tang, C. Ma, O. Deussen, T.-Y. Lee, and C. Xu, “Dance-to-music generation with encoder-based textual inversion,” SIGGRAPH Asia 2024.',
   ],
   contactLink: 'https://jakeoneijk.github.io/',
   paperLink: 'https://arxiv.org/abs/2601.15872',

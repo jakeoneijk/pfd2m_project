@@ -21,13 +21,11 @@ function App() {
   return (
     <div className='App' style={style}>
       <Title />
-      This demo page is temporarily unavailable while approvals are pending.
-      {/** 
       <div style={iframeContainerStyle}>
         <iframe
           width='640'
           height='400'
-          src='https://www.youtube.com/embed/NYptYx7tMBY?si=VU2pXzrWSousMSVe'
+          src='https://www.youtube.com/embed/8ESg45dEBSs?si=I7UcBj0qac1k9Q91'
           title='YouTube video player'
           allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
           allowFullScreen
@@ -38,16 +36,16 @@ function App() {
       <div style={{ margin: 'auto' }}>
         <img style={{ width: '400px', padding: '40px' }} src={fig} />
       </div>
-      <AudioTable audioType='Sound Effect' />
-      <AudioTable audioType='Music' />
-      <AudioTable audioType='Speech' />
+      <AudioTable audioType='Multiple human dancers' />
+      <AudioTable audioType='Single human dancer' />
+      <AudioTable audioType='Multiple non-human dancers' />
+      <AudioTable audioType='Single non-human dancer' />
       <Section
         name='References'
         content={paperContent.reference
           .map((item, index) => `[${index + 1}] ${item}`)
           .join(' \n ')}
       />
-      */}
     </div>
   )
 }
